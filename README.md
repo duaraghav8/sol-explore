@@ -31,6 +31,7 @@ You may use 2 additional features inside these functions:
 /*
 here, solExplore is the required()d object,
 ast is the Abstract Syntax Tree created by solidity-parser
+See examples/ directory for complete example with sample solidity code
 */
 solExplore.traverse (ast, {
 	enter: function (node) {
