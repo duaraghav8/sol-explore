@@ -1,7 +1,8 @@
 'use strict';
 
 let sp = require ('solidity-parser'),
-	solExplore = require ('sol-explore'),
+	//solExplore = require ('sol-explore'),
+	solExplore = require ('../index'),
 	code = require ('fs').readFileSync ('./sample.sol').toString (),
 	ast = sp.parse (code);
 
