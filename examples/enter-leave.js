@@ -6,10 +6,10 @@ let sp = require ('solidity-parser'),
 	ast = sp.parse (code);
 
 solExplore.traverse (ast, {
-	enter: function (node, parent) {
+	enter: function (node) {
 		console.log ('Exploring ', node.type, ' while going down!');
 	},
-	leave: function (node, parent) {
+	leave: function (node) {
 		console.log ('Exploring ', node.type, ' while going back up!');
 	}
 });
