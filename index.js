@@ -6,5 +6,6 @@
 'use strict';
 
 module.exports = {
-	traverse: require ('./lib/traverse')
+	traverse: require ('./lib/traverse'),
+	traversalOptions: require ('./lib/traversalOptions')
 };
