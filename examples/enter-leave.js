@@ -10,7 +10,7 @@ console.log (JSON.stringify (ast, null, 2));
 
 solExplore.traverse (ast, {
 	enter: function (node) {
-		console.log ('Exploring ', node.type, ' while going down!');
+		console.log ('Entering', node.type);
 		if (node.type === 'StructDeclaration') {
 			//this.skipNodesBelow ();
 			this.stopTraversal ();
@@ -20,6 +20,6 @@ solExplore.traverse (ast, {
 		}
 	},
 	leave: function (node) {
-		console.log ('Exploring ', node.type, ' while going back up!');
+		console.log ('Leaving', node.type);
 	}
 });
