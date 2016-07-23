@@ -2,7 +2,7 @@
 
 let sp = require ('solidity-parser'),
 	solExplore = require ('sol-explore'),
-	code = require ('fs').readFileSync ('./sample.sol').toString (),
+	code = require ('fs').readFileSync ('./sample.sol', 'utf-8'),
 	ast = sp.parse (code);
 
 console.log ('The Abstract Syntax Tree we will be exploring is: ');
