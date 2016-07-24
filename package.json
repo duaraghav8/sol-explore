@@ -12,7 +12,8 @@
   },
   "keywords": [
     "Abstract-Syntax-Tree",
-    "Traversal"
+    "Traversal",
+    "Solidity"
   ],
   "author": "Raghav Dua",
   "license": "MIT",
