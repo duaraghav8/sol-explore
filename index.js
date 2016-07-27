@@ -8,5 +8,6 @@
 module.exports = {
 	traverse: require ('./lib/traverse'),
 	traversalOptions: require ('./lib/traversalOptions'),
+	Syntax: require ('./lib/syntax'),
 	version: require ('./package.json').version
 };
