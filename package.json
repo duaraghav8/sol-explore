@@ -1,6 +1,6 @@
 {
   "name": "sol-explore",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Traversal functions for solidity-parser generated AST",
   "main": "index.js",
   "scripts": {
