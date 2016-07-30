@@ -6,7 +6,13 @@ Traversal functions for solidity-parser generated AST
 sol-explore provides Depth-First Traversal of the abstract syntax tree that solidity-parser creates for your solidity code.
 You provide the AST and specifiy the callbacks that get called upon entering and leaving a particular node during the traversal.
 
-#Install
+#Run in Browser
+```html
+<script src="sol-explore-bundle.js"></script>
+```
+Then access the object using ```window.SolExplore``` or simply ```SolExplore```
+
+#Install in Node
 
 ```bash
 npm install --save sol-explore
