@@ -1,3 +1,98 @@
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/**
+ *@fileoverview Exposes all the exploration-related functions through main object
+ *@author Raghav Dua
+ */
+
+'use strict';
+
+var SolExplore = {
+	traverse: require ('./lib/traverse'),
+	traversalOptions: require ('./lib/traversalOptions'),
+	Syntax: require ('./lib/syntax'),
+	version: require ('./package.json').version
+};
+
+if (typeof window !== 'undefined') {
+	window.SolExplore = SolExplore;
+}
+
+module.exports = SolExplore;
+},{"./lib/syntax":2,"./lib/traversalOptions":3,"./lib/traverse":4,"./package.json":5}],2:[function(require,module,exports){
+module.exports = {
+	'as': 'as',
+	'break': 'break',
+	'case': 'case',
+	'catch': 'catch',
+	'class': 'class',
+	'const': 'const',
+	'constant': 'constant',
+	'continue': 'continue',
+	'contract': 'contract',
+	'debugger': 'debugger',
+	'default': 'default',
+	'delete': 'delete',
+	'do': 'do',
+	'else': 'else',
+	'enum': 'enum',
+	'ether': 'ether',
+	'event': 'event',
+	'export': 'export',
+	'extends': 'extends',
+	'false': 'false',
+	'finally': 'finally',
+	'finney': 'finney',
+	'for': 'for',
+	'from': 'from',
+	'function': 'function',
+	'get': 'get',
+	'if': 'if',
+	'is': 'is',
+	'indexed': 'indexed',
+	'instanceof': 'instanceof',
+	'in': 'in',
+	'import': 'import',
+	'internal': 'internal',
+	'library': 'library',
+	'mapping': 'mapping',
+	'memory': 'memory',
+	'modifier': 'modifier',
+	'new': 'new',
+	'null': 'null',
+	'private': 'private',
+	'public': 'public',
+	'return': 'return',
+	'returns': 'returns',
+	'set': 'set',
+	'storage': 'storage',
+	'struct': 'struct',
+	'super': 'super',
+	'switch': 'switch',
+	'szabo': 'szabo',
+	'this': 'this',
+	'throw': 'throw',
+	'true': 'true',
+	'try': 'try',
+	'typeof': 'typeof',
+	'var': 'var',
+	'void': 'void',
+	'wei': 'wei',
+	'while': 'while',
+	'with': 'with'
+};
+},{}],3:[function(require,module,exports){
+/**
+ *@fileoverview options that a visitor may include in their enter() or leave() functions to alter normal traversal behavior
+ *@author Raghav Dua
+ */
+
+'use strict';
+
+module.exports = {
+	STOP_TRAVERSAL: 'stop',
+	SKIP_NODES_BELOW: 'skip'
+};
+},{}],4:[function(require,module,exports){
 /**
  *@fileoverview Depth First Traversal of the given Abstract Syntax Tree
  *@author Raghav Dua
@@ -133,7 +228,7 @@ Controller.prototype.traverse = function traverse (root, visitorActions) {
 
 			if (isASTNode (child)) {
 				CTRL_OBJECT.traverse (child, visitorActions);
-			} else if (child && child.constructor === Array) {
+			} else if (child.constructor === Array) {
 				child.forEach (function (childItem) {
 					CTRL_OBJECT.traverse (childItem, visitorActions);
 				});
@@ -166,3 +261,30 @@ Controller.prototype.traverse = function traverse (root, visitorActions) {
 
  	return new Controller ().traverse (ast, visitorActions);
  };
+},{"./traversalOptions":3}],5:[function(require,module,exports){
+module.exports={
+  "name": "sol-explore",
+  "version": "1.5.0",
+  "description": "Traversal functions for solidity-parser generated AST",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/duaraghav8/sol-explore.git"
+  },
+  "keywords": [
+    "Abstract-Syntax-Tree",
+    "Traversal",
+    "Solidity"
+  ],
+  "author": "Raghav Dua",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/duaraghav8/sol-explore/issues"
+  },
+  "homepage": "https://github.com/duaraghav8/sol-explore#readme"
+}
+
+},{}]},{},[1]);
