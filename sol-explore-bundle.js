@@ -228,7 +228,7 @@ Controller.prototype.traverse = function traverse (root, visitorActions) {
 
 			if (isASTNode (child)) {
 				CTRL_OBJECT.traverse (child, visitorActions);
-			} else if (child.constructor === Array) {
+			} else if (child && child.constructor === Array) {
 				child.forEach (function (childItem) {
 					CTRL_OBJECT.traverse (childItem, visitorActions);
 				});
