@@ -183,7 +183,7 @@ Controller.prototype.init = function init (root, visitorActions) {
  * @returns {(String|undefined)} result Returns commands sent by the callback (for stopping or skipping)
  * @private
  */
-Controller.prototype.exec = function exec (callback, element) {
+Controller.prototype.exec = function exec (callback, element, parentElement) {
 	var prev, result;
 
 	prev = this.__current;
@@ -191,7 +191,9 @@ Controller.prototype.exec = function exec (callback, element) {
 	this.__current = element;
 
 	if (typeof (callback) === 'function') {
-		result = callback.call (this, element.node);
+		result = callback.call (
+			this, element.node, parentElement ? parentElement.node : undefined
+		);
 	}
 
 	this.__current = prev;
@@ -204,7 +206,7 @@ Controller.prototype.exec = function exec (callback, element) {
  * @param {Object} visitorActions The object containing enter and leave behaviors
  * @private
  */
-Controller.prototype.traverse = function traverse (root, visitorActions) {
+Controller.prototype.traverse = function traverse (root, parent, visitorActions) {
 	if (!isASTNode (root) ||
 		this.__flag === traversalOptions.STOP_TRAVERSAL) {
 
@@ -213,7 +215,7 @@ Controller.prototype.traverse = function traverse (root, visitorActions) {
 
 	//access Controller Object's context inside nested functions (where 'this' may not refer to the main object)
 	var CTRL_OBJECT = this;
-	var ret = this.exec (visitorActions.enter, new Element (root));
+	var ret = this.exec (visitorActions.enter, new Element (root), new Element (parent));
 
 	if (ret === traversalOptions.STOP_TRAVERSAL) {
 		
@@ -227,10 +229,10 @@ Controller.prototype.traverse = function traverse (root, visitorActions) {
 			var child = root [key];
 
 			if (isASTNode (child)) {
-				CTRL_OBJECT.traverse (child, visitorActions);
+				CTRL_OBJECT.traverse (child, root, visitorActions);
 			} else if (child && child.constructor === Array) {
 				child.forEach (function (childItem) {
-					CTRL_OBJECT.traverse (childItem, visitorActions);
+					CTRL_OBJECT.traverse (childItem, root, visitorActions);
 				});
 			}
 		});
@@ -259,12 +261,12 @@ Controller.prototype.traverse = function traverse (root, visitorActions) {
  		visitorActions.leave = visitorEnterOrActions.leave || function () {};
  	}
 
- 	return new Controller ().traverse (ast, visitorActions);
+ 	return new Controller ().traverse (ast, null, visitorActions);
  };
 },{"./traversalOptions":3}],5:[function(require,module,exports){
 module.exports={
   "name": "sol-explore",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Traversal functions for solidity-parser generated AST",
   "main": "index.js",
   "scripts": {
