@@ -40,7 +40,7 @@ ast is the Abstract Syntax Tree created by solidity-parser
 See examples/ directory for complete example with sample solidity code
 */
 solExplore.traverse (ast, {
-	enter: function (node) {
+	enter: function (node, parent) {
 		console.log ('Entering', node.type);
 		if (node.type === 'StructDeclaration') {
 			//this.skipNodesBelow ();
