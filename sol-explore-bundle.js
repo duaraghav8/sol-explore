@@ -74,6 +74,7 @@ module.exports = {
 	'true': 'true',
 	'try': 'try',
 	'typeof': 'typeof',
+	'using': 'using',
 	'var': 'var',
 	'void': 'void',
 	'wei': 'wei',
@@ -266,7 +267,7 @@ Controller.prototype.traverse = function traverse (root, parent, visitorActions)
 },{"./traversalOptions":3}],5:[function(require,module,exports){
 module.exports={
   "name": "sol-explore",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Traversal functions for solidity-parser generated AST",
   "main": "index.js",
   "scripts": {
